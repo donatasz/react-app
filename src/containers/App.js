@@ -1,21 +1,47 @@
-import React, { Component } from 'react';
-import logo from '../assets/images/logo.svg';
+import React, {Component} from 'react';
+import ApiClient from '../lib/ApiClient';
+import PageHeader from '../components/PageHeader';
+import PageFooter from '../components/PageFooter';
+import ProjectList from '../components/ProjectList';
 import '../assets/styles/main.scss';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis deleniti enim maiores nesciunt, perferendis qui.
-        </p>
-      </div>
-    );
-  }
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            projects: []
+        };
+    }
+
+    componentWillMount() {
+        this.getData();
+    }
+
+    getData() {
+        ApiClient.get('car', (response) => {
+            this.setState({
+                projects: response.projects
+            });
+        });
+    }
+
+    render() {
+        const projects = this.state.projects;
+
+        return (
+            <div className="page-container">
+                <PageHeader/>
+                <section className="main-content">
+                    <h1>Behance</h1>
+                    <p>The leading online platform to showcase & discover creative work. The creative world updates their work in one place to broadcast it widely and efficiently. Companies explore the work and access talent on a global scale.</p>
+                    <ProjectList projects={projects}/>
+                    <PageFooter/>
+                </section>
+            </div>
+        );
+    }
 }
 
 export default App;

@@ -2,6 +2,7 @@
   "name": "react-app",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://www.behance.net/v2/",
   "devDependencies": {
     "node-sass": "^4.5.0",
     "sass-loader": "^6.0.3",
