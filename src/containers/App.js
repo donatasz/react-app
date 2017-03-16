@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import ApiClient from '../lib/ApiClient';
 import debounce from '../lib/debounce';
-import PageHeader from '../components/PageHeader';
-import PageFooter from '../components/PageFooter';
 import ProjectSearch from '../components/ProjectSearch';
 import ProjectList from '../components/ProjectList';
 import '../assets/styles/main.scss';
@@ -36,7 +34,6 @@ class App extends Component {
 
         return (
             <div className="page-container">
-                <PageHeader/>
                 <section className="main-content">
                     <h1>Behance</h1>
                     <p>The leading online platform to showcase & discover creative work. The creative world updates
@@ -44,7 +41,6 @@ class App extends Component {
                         access talent on a global scale.</p>
                     <ProjectSearch getProjects={debounce(this.getProjects, 200)}/>
                     <ProjectList projects={projects}/>
-                    <PageFooter/>
                 </section>
             </div>
         );
