@@ -7,6 +7,7 @@
 
 /* Modules */
 @import 'modules/buttons';
+@import 'modules/inputs';
 
 * {
     box-sizing: border-box;
@@ -209,11 +210,6 @@ a {
         }
     }
 
-    ul,
-    ol {
-        margin-top: 0;
-    }
-
     blockquote {
         padding: 0 1rem;
         margin-left: 0;
@@ -278,6 +274,7 @@ a {
     flex-direction: row;
     flex-wrap: wrap;
     padding: 0;
+    margin-top: 2rem;
     list-style-type: none;
 }
 
