@@ -4,6 +4,7 @@
 @import 'base/variables';
 @import 'base/mixins';
 @import 'base/placeholders';
+@import 'base/animations';
 
 /* Modules */
 @import 'modules/buttons';
@@ -348,13 +349,4 @@ a {
 
 .page-footer__credits {
     color: $blockquote-text-color;
-}
-
-@keyframes logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
 }

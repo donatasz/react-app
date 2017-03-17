@@ -3,6 +3,7 @@ import ApiClient from '../lib/ApiClient';
 import debounce from '../lib/debounce';
 import ProjectSearch from '../components/ProjectSearch';
 import ProjectList from '../components/ProjectList';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import '../assets/styles/main.scss';
 
 class App extends Component {
@@ -33,16 +34,19 @@ class App extends Component {
         const projects = this.state.projects;
 
         return (
-            <div className="page-container">
-                <section className="main-content">
-                    <h1>Behance</h1>
-                    <p>The leading online platform to showcase & discover creative work. The creative world updates
-                        their work in one place to broadcast it widely and efficiently. Companies explore the work and
-                        access talent on a global scale.</p>
-                    <ProjectSearch getProjects={debounce(this.getProjects, 200)}/>
-                    <ProjectList projects={projects}/>
-                </section>
-            </div>
+            <ReactCSSTransitionGroup
+                transitionName="fade"
+                transitionAppear={true}
+                transitionAppearTimeout={500}
+                transitionEnter={false}
+                transitionLeave={false}>
+                <h1>Behance</h1>
+                <p>The leading online platform to showcase & discover creative work. The creative world updates
+                    their work in one place to broadcast it widely and efficiently. Companies explore the work and
+                    access talent on a global scale.</p>
+                <ProjectSearch getProjects={debounce(this.getProjects, 200)}/>
+                <ProjectList projects={projects}/>
+            </ReactCSSTransitionGroup>
         );
     }
 }
