@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ApiClient from '../lib/ApiClient';
 import debounce from '../lib/debounce';
+import ProjectHeader from '../components/ProjectHeader';
 import ProjectSearch from '../components/ProjectSearch';
 import ProjectList from '../components/ProjectList';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
@@ -23,7 +24,7 @@ class App extends Component {
     }
 
     getProjects(searchTerm = 'cars') {
-        ApiClient.get(searchTerm, (response) => {
+        ApiClient.getProjects(searchTerm, (response) => {
             this.setState({
                 projects: response.projects
             });
@@ -40,10 +41,7 @@ class App extends Component {
                 transitionAppearTimeout={500}
                 transitionEnter={false}
                 transitionLeave={false}>
-                <h1>Behance</h1>
-                <p>The leading online platform to showcase & discover creative work. The creative world updates
-                    their work in one place to broadcast it widely and efficiently. Companies explore the work and
-                    access talent on a global scale.</p>
+                <ProjectHeader/>
                 <ProjectSearch getProjects={debounce(this.getProjects, 200)}/>
                 <ProjectList projects={projects}/>
             </ReactCSSTransitionGroup>

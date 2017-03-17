@@ -1,28 +1,29 @@
 import API_KEY from '../constants/apiKey';
+import axios from 'axios';
 
-/* eslint-disable no-undef */
-function get(query, cb) {
-    return fetch(`projects?q=${query}&api_key=${API_KEY}`, {
-        accept: 'application/json',
-    }).then(checkStatus)
-        .then(parseJSON)
-        .then(cb);
+function getProjects(query, cb) {
+
+    axios.get(`projects?q=${query}&api_key=${API_KEY}`)
+        .then(checkStatus)
+        .then(cb)
+        .catch(function (error) {
+            console.log(error); // eslint-disable-line no-console
+        });
 }
 
 function checkStatus(response) {
     if (response.status >= 200 && response.status < 300) {
-        return response;
+        return response.data;
     }
+
     const error = new Error(`HTTP Error ${response.statusText}`);
-    error.status = response.statusText;
-    error.response = response;
-    console.log(error); // eslint-disable-line no-console
+
+        error.status = response.statusText;
+        error.response = response;
+
     throw error;
 }
 
-function parseJSON(response) {
-    return response.json();
-}
+const ApiClient = { getProjects };
 
-const ApiClient = { get };
 export default ApiClient;
