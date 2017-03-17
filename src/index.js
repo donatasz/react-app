@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import App from './containers/App';
 import PageHeader from './components/PageHeader';
+import PageNavigation from './components/PageNavigation';
 import PageFooter from './components/PageFooter';
 import Todo from './containers/Todo';
 import Cart from './containers/Cart';
@@ -18,14 +19,11 @@ ReactDOM.render(
                 <PageHeader/>
                 <div className="page-container">
                     <section className="main-content">
-                        <ul className="page-navigation">
-                            <li className="page-navigation__link"><Link to="/">Behance</Link></li>
-                            <li className="page-navigation__link"><Link to="/todo">Todo</Link></li>
-                            <li className="page-navigation__link"><Link to="/cart">Cart</Link></li>
-                        </ul>
-                        <Route exact path="/" component={App} />
+                        <PageNavigation/>
+                        <Route path="/behance" component={App} />
                         <Route path="/todo" component={Todo} />
                         <Route path="/cart" component={Cart} />
+                        <Redirect from="/" to="/behance"/>
                         <PageFooter/>
                     </section>
                 </div>

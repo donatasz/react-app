@@ -11,7 +11,7 @@ class Todo extends Component {
                 transitionEnter={false}
                 transitionLeave={false}>
                 <div>
-                    <h1>Todo list</h1>
+                    <h1>Tasks</h1>
                 </div>
             </ReactCSSTransitionGroup>
         );
